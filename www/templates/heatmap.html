@@ -1,0 +1,24 @@
+<ion-view>
+  <ion-content scroll="false">
+    <div class="heatmap-sidemenu" style="text-align: center; line-height: 30px">
+      <div style="margin-top: 450%">
+        <div>
+          <i class="icon ion-home"></i>
+        </div>
+        <div>
+          <i class="icon ion-heart"></i>
+        </div>
+        <div>
+          <i class="icon ion-person" ng-click="goProfile()"></i>
+        </div>
+      </div>
+    </div>
+    <div class="heatmap-content">
+      <div ng-repeat="venue in models.venues" class="venue" ng-click="openVenueModal(venue.id)">
+        <div style="position: relative; top: 33%;">{{ venue.name }}</div>
+      </div>
+    </div>
+  </ion-content>
+
+
+</ion-view>

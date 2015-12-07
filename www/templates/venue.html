@@ -1,0 +1,19 @@
+<ion-modal-view>
+  <ion-header-bar class="venue-menu">
+    <h1 class="title">{{ activeVenue.title }}</h1>
+    <div class="buttons">
+      <i class="icon ion-close-round" ng-click="closeVenueModal()" style="margin-top: 8px;"></i>
+    </div>
+  </ion-header-bar>
+  <ion-content class="venue-content">
+    <p style="margin-left: 5px">Hype Score: {{ activeVenue.score }}</p>
+    <p style="margin-left: 5px">Address: {{ activeVenue.address }}</p>
+    <p style="margin-left: 5px">Website: {{ activeVenue.website }}</p>
+    <p style="margin-left: 5px">Facebook Likes: {{ activeVenue.fb_likes }}</p>
+    <p style="margin-left: 5px">Facebook ID: {{ activeVenue.facebook_id }}</p>
+    <p style="margin-left: 5px">Facebook Checkins: {{ activeVenue.fb_checkins }}</p>
+    <p style="margin-left: 5px">Instagram Followers: {{ activeVenue.instagram_followers }}</p>
+  </ion-content>
+  <ion-footer-bar align-title="left" class="venue-menu">
+  </ion-footer-bar>
+</ion-modal-view>
