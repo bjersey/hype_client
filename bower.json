@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "lodash": "~3.10.1",
-    "ngOpenFB": "*"
+    "ngOpenFB": "*",
+    "ngCordova": "~0.1.23-alpha"
   }
 }

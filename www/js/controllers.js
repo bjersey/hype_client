@@ -7,7 +7,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
     $openFB.isLoggedIn().then(function (loginStatus) {
 
-      $http.get("http://hype-server.herokuapp.com/venue/all/").then(function (response) {
+      $http.get("https://hype-server.herokuapp.com/venue/all/").then(function (response) {
         $scope.models.venues = _.slice(_.sortByOrder(response.data, function (venue) {
           return venue.score ? venue.score : 0;
         }, ['desc']), 0, 12);
