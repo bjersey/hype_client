@@ -5,42 +5,48 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
     $scope.models = {};
 
-    $openFB.isLoggedIn().then(function (loginStatus) {
+    var updateData = function () {
+      $openFB.isLoggedIn().then(function (loginStatus) {
 
-      $http.get("https://hype-server.herokuapp.com/venue/venueregion/all/").then(function (response) {
-        $scope.models.regions = response.data;
+        $http.get("https://hype-server.herokuapp.com/venue/venueregion/all/").then(function (response) {
+          $scope.models.regions = response.data;
 
-        $scope.models.regionGroup = [_.slice($scope.models.regions, 0, 4), _.slice($scope.models.regions, 4, 9),
-                                     _.slice($scope.models.regions, 9, 14), _.slice($scope.models.regions, 14, 19)];
+          $scope.models.regionGroup = [_.slice($scope.models.regions, 0, 4), _.slice($scope.models.regions, 4, 9),
+                                       _.slice($scope.models.regions, 9, 14), _.slice($scope.models.regions, 14, 19)];
 
-        _.forEach($scope.models.regions, function (region) {
-          region.isOpen = false;
+          _.forEach($scope.models.regions, function (region) {
+            region.isOpen = false;
+          });
+
+          $scope.models.activeRegionNumber = 0;
+
+          $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
+
+        }, function (response) {
+          console.log('failed to retrieve info for dashboard');
         });
 
-        $scope.models.activeRegionNumber = 0;
+        $http.get("https://hype-server.herokuapp.com/venue/venue/all/").then(function (response) {
 
-        $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
+          $scope.models.venues = response.data;
 
-      }, function (response) {
-        console.log('failed to retrieve info for dashboard');
-      });
+          _.forEach($scope.models.regions, function (region) {
+            region.venues = _.slice(_.filter($scope.models.venues, {venue_region: region.id}), 0, 25);
+          });
 
-      $http.get("https://hype-server.herokuapp.com/venue/venue/all/").then(function (response) {
-
-        $scope.models.venues = response.data;
-
-        _.forEach($scope.models.regions, function (region) {
-          region.venues = _.slice(_.filter($scope.models.venues, {venue_region: region.id}), 0, 25);
+        }, function (response) {
+          console.log('failed to retrieve info for dashboard');
         });
 
-      }, function (response) {
-        console.log('failed to retrieve info for dashboard');
+      }, function (err) {
+        console.log(err);
+        console.log("first time?");
+        $state.go('login');
       });
 
-    }, function (err) {
-      console.log(err);
-      $state.go('login');
-    });
+    };
+    console.log("i am going to update now");
+    updateData();
 
     $scope.swipeRegionsLeft = function swipeRegionsLeft() {
       if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber + 1]) && !$scope.disableRegionAnimation) {
@@ -88,11 +94,14 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
     };
 
     $scope.goHeatMap = function () {
+      updateData();
+
       _.forEach($scope.models.regions, function (region) {
         region.isOpen = false;
       });
       $scope.disableRegionAnimation = false;
-    };
+    }
+    ;
 
     $scope.goProfile = function () {
       $openFB.isLoggedIn().then(function (loginStatus) {
@@ -112,7 +121,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
           if (response.status === 'connected') {
             console.log('Facebook login succeeded');
             $http.post("https://hype-server.herokuapp.com/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
-            //$http.post("http://localhost:8000/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
+              //$http.post("http://localhost:8000/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
               $state.go('heatMap');
             }, function () {
               console.log('token did not verify');

@@ -5,6 +5,7 @@
 angular.module('hype_client').config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('heatMap', {
+      cache: false,
       url: '/heatmap',
       templateUrl: 'templates/heatmap.html',
       controller: 'HeatMapController'
