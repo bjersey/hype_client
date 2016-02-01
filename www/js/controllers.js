@@ -43,7 +43,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
     });
 
     $scope.swipeRegionsLeft = function swipeRegionsLeft() {
-      if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber + 1])) {
+      if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber + 1]) && !$scope.disableRegionAnimation) {
         $scope.models.activeRegionNumber = $scope.models.activeRegionNumber + 1;
         $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
       }
@@ -51,7 +51,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
     };
 
     $scope.swipeRegionsRight = function swipeRegionsRight() {
-      if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber - 1])) {
+      if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber - 1]) && !$scope.disableRegionAnimation) {
         $scope.models.activeRegionNumber = $scope.models.activeRegionNumber - 1;
         $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
       }
