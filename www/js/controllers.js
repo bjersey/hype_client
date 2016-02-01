@@ -1,31 +1,37 @@
 /**
  * Created by bjersey on 12/6/15.
  */
-angular.module('hype_client').controller('HeatMapController', function ($scope, $state, $http, $ionicModal, $openFB) {
+angular.module('hype_client').controller('HeatMapController', function ($scope, $state, $http, $openFB) {
 
     $scope.models = {};
 
     $openFB.isLoggedIn().then(function (loginStatus) {
 
-      $http.get("https://hype-server.herokuapp.com/venue/all/").then(function (response) {
-        $scope.models.venues = _.slice(_.sortByOrder(response.data, function (venue) {
-          return venue.score ? venue.score : 0;
-        }, ['desc']), 0, 12);
+      $http.get("https://hype-server.herokuapp.com/venue/venueregion/all/").then(function (response) {
+        $scope.models.regions = response.data;
 
-        _.forEach($scope.models.venues, function (venue) {
-          $openFB.api({
-            path: '/' + venue.facebook_id,
-            params: {fields: 'id,name,likes,checkins'}
-          }).then(
-            function (fb_details) {
-              console.log(fb_details);
-              venue.fb_likes = fb_details.likes;
-              venue.fb_checkins = fb_details.checkins;
-            },
-            function (error) {
-              alert('Facebook error: ' + error.error_description + ' ' + venue.name);
-            });
-        })
+        $scope.models.regionGroup = [_.slice($scope.models.regions, 0, 4), _.slice($scope.models.regions, 4, 9),
+                                     _.slice($scope.models.regions, 9, 14), _.slice($scope.models.regions, 14, 19)];
+
+        _.forEach($scope.models.regions, function (region) {
+          region.isOpen = false;
+        });
+
+        $scope.models.activeRegionNumber = 0;
+
+        $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
+
+      }, function (response) {
+        console.log('failed to retrieve info for dashboard');
+      });
+
+      $http.get("https://hype-server.herokuapp.com/venue/venue/all/").then(function (response) {
+
+        $scope.models.venues = response.data;
+
+        _.forEach($scope.models.regions, function (region) {
+          region.venues = _.slice(_.filter($scope.models.venues, {venue_region: region.id}), 0, 25);
+        });
 
       }, function (response) {
         console.log('failed to retrieve info for dashboard');
@@ -36,20 +42,56 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
       $state.go('login');
     });
 
-    $ionicModal.fromTemplateUrl('templates/venue.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function (modal) {
-      $scope.modal = modal;
-    });
-
-    $scope.openVenueModal = function (venueId) {
-      $scope.activeVenue = _.find($scope.models.venues, {id: venueId});
-      $scope.modal.show();
+    $scope.swipeRegionsLeft = function swipeRegionsLeft() {
+      if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber + 1])) {
+        $scope.models.activeRegionNumber = $scope.models.activeRegionNumber + 1;
+        $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
+      }
+      console.log('swiping left');
     };
 
-    $scope.closeVenueModal = function () {
-      $scope.modal.hide();
+    $scope.swipeRegionsRight = function swipeRegionsRight() {
+      if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber - 1])) {
+        $scope.models.activeRegionNumber = $scope.models.activeRegionNumber - 1;
+        $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
+      }
+      console.log('swiping right');
+    };
+
+    $scope.calcRegionPosition = function calcRegionPosition(idx) {
+
+      var foo = (idx % 2) * 50;
+      var bar = _.floor(idx / 2) * 50;
+
+      var top = bar + '%';
+      var left = foo + '%';
+
+      return {
+        top: top,
+        left: left
+      }
+    };
+
+    $scope.isRegionOpen = function isRegionOpen(venue) {
+      return venue.isOpen;
+    };
+
+    $scope.disableRegionAnimation = false;
+
+    $scope.toggleVenueRegion = function openVenueRegion(region) {
+
+      if (!$scope.disableRegionAnimation) {
+        region.isOpen = !region.isOpen;
+        $scope.disableRegionAnimation = true;
+      }
+
+    };
+
+    $scope.goHeatMap = function () {
+      _.forEach($scope.models.regions, function (region) {
+        region.isOpen = false;
+      });
+      $scope.disableRegionAnimation = false;
     };
 
     $scope.goProfile = function () {
@@ -63,13 +105,18 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
     };
 
   })
-  .controller('LoginController', function ($scope, $state, $openFB) {
+  .controller('LoginController', function ($scope, $state, $http, $openFB) {
     $scope.fbLogin = function () {
-      $openFB.login({scope: 'email,public_profile'}).then(
+      $openFB.login({scope: 'email,public_profile,user_location,user_likes'}).then(
         function (response) {
           if (response.status === 'connected') {
             console.log('Facebook login succeeded');
-            $state.go('heatMap');
+            //$http.post("https://hype-server.herokuapp.com/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
+            $http.post("http://localhost:8000/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
+              $state.go('heatMap');
+            }, function () {
+              console.log('token did not verify');
+            });
           }
           else {
             alert('Facebook login failed');

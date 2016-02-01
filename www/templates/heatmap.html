@@ -1,9 +1,9 @@
 <ion-view>
   <ion-content scroll="false">
     <div class="heatmap-sidemenu" style="text-align: center; line-height: 30px">
-      <div style="margin-top: 450%">
-        <div>
-          <i class="icon ion-home"></i>
+      <div style="margin-top: 330%">
+        <div style="margin-bottom: 5px">
+          <i class="icon ion-home" ng-click="goHeatMap()"></i>
         </div>
         <div>
           <i class="icon ion-heart"></i>
@@ -11,11 +11,19 @@
         <div>
           <i class="icon ion-person" ng-click="goProfile()"></i>
         </div>
+        <div style="margin-top: 5px">
+          <i class="icon ion-person-stalker"></i>
+        </div>
       </div>
     </div>
     <div class="heatmap-content">
-      <div ng-repeat="venue in models.venues" class="venue" ng-click="openVenueModal(venue.id)">
-        <div style="position: relative; top: 33%;">{{ venue.name }}</div>
+      <div ng-repeat="region in models.activeRegionGroup"
+           class="close-region"
+           ng-class="{'open-region': region.isOpen}"
+           ng-style="calcRegionPosition($index)"
+           ng-click="toggleVenueRegion(region)" on-swipe-right="swipeRegionsRight()" on-swipe-left="swipeRegionsLeft()">
+    <!--<!--<div style="position: relative; top: 50%;">{{ venue.name }}</-->
+        <div venue-region="region" style="width: 100%; height: 100%;"></div>
       </div>
     </div>
   </ion-content>

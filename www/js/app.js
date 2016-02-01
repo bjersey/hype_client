@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('hype_client', ['ionic', 'ngOpenFB', 'ngCordova'])
 
-.run(function($ionicPlatform, $openFB, $cordovaStatusbar) {
+.run(function($ionicPlatform, $openFB) {
   $ionicPlatform.ready(function() {
 
     $openFB.init({appId: '309453912512212'});
@@ -19,7 +19,7 @@ angular.module('hype_client', ['ionic', 'ngOpenFB', 'ngCordova'])
       StatusBar.styleDefault();
     }
 
-    $cordovaStatusbar.hide();
+    //$cordovaStatusbar.hide();
   });
 })
   .config(function ($httpProvider) {

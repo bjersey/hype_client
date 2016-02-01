@@ -1,0 +1,53 @@
+<!--<div ng-repeat="venue in region.venues"-->
+     <!--class="venue-in-region"-->
+     <!--ng-style="calcVenuePosition($index)">-->
+  <!--{{ venue.name }}-->
+<!--</div>-->
+<!--{{ venue.name }}-->
+
+<table style="width: 100%; height: 100%; table-layout: fixed; white-space: nowrap;">
+  <tr ng-repeat="row in allRows">
+    <td ng-repeat="venue in row" ng-click="openVenueModal(venue.id)" class="venue-inactive" ng-class="{'venue-active': region.isOpen}" style="text-overflow: ellipsis; overflow: hidden; border: 1px solid black">
+      {{ venue.name }}
+      <!--hi-->
+    </td>
+  </tr>
+</table>
+
+<!--<table style="width: 100%; height: 100%;">-->
+  <!--<tr>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+    <!--<td>foo</td>-->
+  <!--</tr>-->
+<!--</table>-->

@@ -39,19 +39,35 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .heatmap-content {
   position: absolute;
   left: 5%;
-  height: 105vh;
+  height: calc(105vh - 20px);
+  width: calc(100% - 33px);
   text-align: center;
   background-color: #b5b5b7;
 
-  .venue {
+  .close-region {
+    position: absolute;
     background: #B8BBCC;
-    display: inline-block;
-    width: 31.33%;
-    height: 21%;
-    margin: 5px;
+    height: 51%;
+    width: 50%;
+    z-index: 1;
+    transition: all .5s ease-in-out;
+    //display: inline-block;
+    //width: 31.33%;
+    //height: 21%;
+    //margin: 5px;
     font-size: .8em;
     border: .8px solid black;
-    border-radius: 10px;
+    //border-radius: 10px;
+  }
+
+  .open-region {
+    left:0 !important;
+    top:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    height: 101%;
+    width: 100%;
+    z-index:100;
   }
 }
 
@@ -61,4 +77,30 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .venue-content {
   background-color: #b5b5b7;
+}
+
+.venue-inactive {
+  z-index: 0;
+  font-size: 8px;
+  transition: all .5s ease-in-out;
+}
+
+.venue-active {
+  z-index: 200;
+  font-size: 12px;
+}
+
+.venue-in-region {
+  position: absolute;
+  background: #cc243b;
+  height: 20%;
+  width: 20%;
+  //z-index: 1;
+  //display: inline-block;
+  //width: 31.33%;
+  //height: 21%;
+  //margin: 5px;
+  font-size: .8em;
+  border: .8px solid black;
+  //border-radius: 10px;
 }

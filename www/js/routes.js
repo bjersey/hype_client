@@ -10,12 +10,12 @@ angular.module('hype_client').config(function ($stateProvider, $urlRouterProvide
       controller: 'HeatMapController'
     })
     .state('login', {
-      url: 'login',
+      url: '/login',
       templateUrl: 'templates/login.html',
       controller: 'LoginController'
     })
     .state('profile', {
-      url: 'profile',
+      url: '/profile',
       templateUrl: 'templates/profile.html',
       controller: 'ProfileController'
     });
