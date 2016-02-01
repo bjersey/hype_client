@@ -111,8 +111,8 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
         function (response) {
           if (response.status === 'connected') {
             console.log('Facebook login succeeded');
-            //$http.post("https://hype-server.herokuapp.com/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
-            $http.post("http://localhost:8000/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
+            $http.post("https://hype-server.herokuapp.com/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
+            //$http.post("http://localhost:8000/core/login/", {fb_access_token: response.authResponse.token}).then(function () {
               $state.go('heatMap');
             }, function () {
               console.log('token did not verify');
