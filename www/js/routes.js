@@ -21,5 +21,5 @@ angular.module('hype_client').config(function ($stateProvider, $urlRouterProvide
       controller: 'ProfileController'
     });
 
-  $urlRouterProvider.otherwise('/heatmap');
+  $urlRouterProvider.otherwise('heatmap');
 });
