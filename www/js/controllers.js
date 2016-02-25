@@ -11,8 +11,8 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
         $http.get("https://hype-server.herokuapp.com/venue/venueregion/all/").then(function (response) {
           $scope.models.regions = response.data;
 
-          $scope.models.regionGroup = [_.slice($scope.models.regions, 0, 4), _.slice($scope.models.regions, 4, 9),
-                                       _.slice($scope.models.regions, 9, 14), _.slice($scope.models.regions, 14, 19)];
+          $scope.models.regionGroup = [_.slice($scope.models.regions, 0, 6), _.slice($scope.models.regions, 6, 11),
+                                       _.slice($scope.models.regions, 11, 16), _.slice($scope.models.regions, 16, 21)];
 
           _.forEach($scope.models.regions, function (region) {
             region.isOpen = false;
@@ -45,7 +45,6 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
       });
 
     };
-    console.log("i am going to update now");
     updateData();
 
     $scope.swipeRegionsLeft = function swipeRegionsLeft() {
@@ -66,8 +65,8 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
     $scope.calcRegionPosition = function calcRegionPosition(idx) {
 
-      var foo = (idx % 2) * 50;
-      var bar = _.floor(idx / 2) * 50;
+      var foo = (idx % 3) * 33;
+      var bar = _.floor(idx / 3) * 50;
 
       var top = bar + '%';
       var left = foo + '%';

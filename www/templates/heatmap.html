@@ -22,7 +22,6 @@
            ng-class="{'open-region': region.isOpen}"
            ng-style="calcRegionPosition($index)"
            ng-click="toggleVenueRegion(region)" on-swipe-right="swipeRegionsRight()" on-swipe-left="swipeRegionsLeft()">
-    <!--<!--<div style="position: relative; top: 50%;">{{ venue.name }}</-->
         <span class="region-name" ng-class="{'region-name-active-region': region.isOpen}">{{ region.name }}</span>
         <div venue-region="region" style="width: 100%; height: 100%;"></div>
       </div>

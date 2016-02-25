@@ -9111,11 +9111,11 @@ a.button {
     position: absolute;
     background: #B8BBCC;
     height: 51%;
-    width: 50%;
+    width: 34%;
     z-index: 1;
     transition: all .5s ease-in-out;
     font-size: .8em;
-    border: .8px solid black; }
+    border: .8px transparent black; }
   .heatmap-content .open-region {
     left: 0 !important;
     top: 0 !important;
@@ -9160,7 +9160,8 @@ a.button {
   right: .5em;
   top: .5em;
   transition: all .5s ease-in-out;
-  color: red; }
+  color: rgba(255, 134, 4, 0.67);
+  font-weight: bold; }
 
 .region-name-active-region {
   position: absolute;
