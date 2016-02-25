@@ -98,13 +98,30 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .venue-inactive {
   z-index: 0;
-  font-size: 8px;
+  font-size: 0px;
   transition: all .5s ease-in-out;
 }
 
 .venue-active {
   z-index: 200;
   font-size: 12px;
+}
+
+.region-name {
+  position: absolute;
+  font-size: 2em;
+  right: .5em;
+  top: .5em;
+  transition: all .5s ease-in-out;
+  color: red;
+}
+
+.region-name-active-region {
+  position: absolute;
+  font-size: 2em;
+  right: .5em;
+  top: .5em;
+  display: none;
 }
 
 .venue-in-region {
