@@ -3,6 +3,8 @@
  */
 angular.module('hype_client').controller('HeatMapController', function ($scope, $state, $http, $openFB) {
 
+    //window.screen.lockOrientation('portrait');
+
     $scope.models = {};
 
     var updateData = function () {
