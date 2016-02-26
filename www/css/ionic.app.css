@@ -9100,6 +9100,14 @@ a.button {
     font-size: 2em;
     color: #f2b632; }
 
+.heatmap-advertisement {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 11%;
+  width: 95%;
+  background-color: #ff61eb; }
+
 .heatmap-content {
   position: absolute;
   left: 5%;
@@ -9110,12 +9118,12 @@ a.button {
   .heatmap-content .close-region {
     position: absolute;
     background: #B8BBCC;
-    height: 51%;
+    height: 45%;
     width: 34%;
     z-index: 1;
     transition: all .5s ease-in-out;
     font-size: .8em;
-    border: .8px transparent black; }
+    border: .8px transparent; }
   .heatmap-content .open-region {
     left: 0 !important;
     top: 0 !important;
