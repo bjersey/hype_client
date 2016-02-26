@@ -52,13 +52,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   height: calc(105vh - 20px);
   width: calc(100% - 33px);
   text-align: center;
-  background-color: #b5b5b7;
+  background-color: black;
 
   .close-region {
     position: absolute;
     background: #B8BBCC;
-    height: 45%;
-    width: 34%;
+    height: 44%;
+    width: 33.5%;
     z-index: 1;
     transition: all .5s ease-in-out;
     //display: inline-block;
@@ -124,6 +124,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   top: .5em;
   transition: all .5s ease-in-out;
   color: rgba(255, 134, 4, 0.67);
+  color: white;
   font-weight: bold;
 }
 

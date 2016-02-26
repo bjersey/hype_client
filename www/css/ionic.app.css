@@ -9756,12 +9756,12 @@ a.button {
   height: calc(105vh - 20px);
   width: calc(100% - 33px);
   text-align: center;
-  background-color: #b5b5b7; }
+  background-color: black; }
   .heatmap-content .close-region {
     position: absolute;
     background: #B8BBCC;
-    height: 45%;
-    width: 34%;
+    height: 44%;
+    width: 33.5%;
     z-index: 1;
     transition: all .5s ease-in-out;
     font-size: .8em;
@@ -9811,6 +9811,7 @@ a.button {
   top: .5em;
   transition: all .5s ease-in-out;
   color: rgba(255, 134, 4, 0.67);
+  color: white;
   font-weight: bold; }
 
 .region-name-active-region {
