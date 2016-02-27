@@ -33,7 +33,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
           $scope.models.venues = response.data;
 
           _.forEach($scope.models.regions, function (region) {
-            region.venues = _.slice(_.filter($scope.models.venues, {venue_region: region.id}), 0, 25);
+            region.venues = _.slice(_.filter($scope.models.venues, {venue_region: region.id}), 0, 50);
           });
 
         }, function (response) {
