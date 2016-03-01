@@ -9760,7 +9760,6 @@ a.button {
   background-color: black; }
   .heatmap-content .close-region {
     position: absolute;
-    background: #B8BBCC;
     height: 49%;
     width: 33%;
     z-index: 1;
@@ -9799,7 +9798,8 @@ a.button {
 .venue-inactive {
   z-index: 0;
   font-size: 0px;
-  transition: all .5s ease-in-out; }
+  transition: all .5s ease-in-out;
+  background: #333439; }
 
 .venue-active {
   z-index: 200;
@@ -9813,6 +9813,7 @@ a.button {
   transition: all .5s ease-in-out;
   color: rgba(255, 134, 4, 0.67);
   color: white;
+  z-index: 1000;
   font-weight: bold; }
 
 .region-name-active-region {

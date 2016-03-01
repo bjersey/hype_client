@@ -59,7 +59,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
   .close-region {
     position: absolute;
-    background: #B8BBCC;
+    //background: black;
     height: 49%;
     width: 33%;
     z-index: 1;
@@ -113,6 +113,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   z-index: 0;
   font-size: 0px;
   transition: all .5s ease-in-out;
+  background: #333439;
 }
 
 .venue-active {
@@ -128,6 +129,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   transition: all .5s ease-in-out;
   color: rgba(255, 134, 4, 0.67);
   color: white;
+  z-index: 1000;
   font-weight: bold;
 }
 
