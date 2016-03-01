@@ -32,9 +32,28 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
           $scope.models.venues = response.data;
 
+          var venuesWithScores = _.filter($scope.models.venues, function (v) {return !!v.score});
+
+          var maxScore = _.maxBy(venuesWithScores, function(v) {return v.score}).score;
+
           _.forEach($scope.models.regions, function (region) {
-            region.venues = _.slice(_.filter($scope.models.venues, {venue_region: region.id}), 0, 50);
+            var allVenues = _.filter($scope.models.venues, {venue_region: region.id});
+
+            allVenues = _.sortBy(allVenues, 'score');
+
+            var topVenues = _.slice(allVenues, 0, 50);
+
+            topVenues = _.reverse(topVenues);
+
+            _.forEach(topVenues, function (venue) {
+              venue.normalizedHeatScore =  !!venue.score ? (venue.score / maxScore) : null;
+            });
+
+            region.venues = topVenues;
+
           });
+
+
 
         }, function (response) {
           console.log('failed to retrieve info for dashboard');
