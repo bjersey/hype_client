@@ -9735,7 +9735,7 @@ a.button {
   position: absolute;
   top: 0;
   left: 0;
-  width: 5%;
+  width: 9.2%;
   min-height: 105vh;
   background-color: #252839; }
   .heatmap-sidemenu .icon {
@@ -9746,22 +9746,23 @@ a.button {
   position: absolute;
   bottom: 0;
   right: 0;
-  height: 11%;
-  width: 95%;
+  height: 14.7%;
+  width: 90.8%;
   background-color: #cc2a40; }
 
 .heatmap-content {
   position: absolute;
-  left: 5%;
-  height: calc(105vh - 20px);
-  width: calc(100% - 33px);
+  left: 9.2%;
+  bottom: 14.7%;
+  height: 85.3%;
+  width: 90.8%;
   text-align: center;
   background-color: black; }
   .heatmap-content .close-region {
     position: absolute;
     background: #B8BBCC;
-    height: 43.5%;
-    width: 33.5%;
+    height: 35.7%;
+    width: 28.6%;
     z-index: 1;
     transition: all .5s ease-in-out;
     font-size: .8em;
@@ -9771,7 +9772,7 @@ a.button {
     top: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    height: 101%;
+    height: 99%;
     width: 100%;
     z-index: 100; }
 
