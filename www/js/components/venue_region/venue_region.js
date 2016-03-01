@@ -13,7 +13,11 @@ angular.module('hype_client').directive('venueRegion', function venueRegion() {
         $scope.fourthRow = _.slice($scope.region.venues, 15, 20);
         $scope.fifthRow = _.slice($scope.region.venues, 20, 25);
 
-        $scope.allRows = [$scope.firstRow, $scope.secondRow, $scope.thirdRow, $scope.fourthRow, $scope.fifthRow];
+        $scope.sixthRow = _.slice($scope.region.venues, 25, 30);
+        $scope.seventhRow = _.slice($scope.region.venues, 30, 35);
+        $scope.eighthRow = _.slice($scope.region.venues, 35, 40);
+
+        $scope.allRows = [$scope.firstRow, $scope.secondRow, $scope.thirdRow, $scope.fourthRow, $scope.fifthRow, $scope.sixthRow, $scope.seventhRow];
       });
 
       $scope.calcVenuePosition = function calcVenuePosition(idx) {
