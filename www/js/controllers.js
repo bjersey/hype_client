@@ -35,6 +35,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
           var venuesWithScores = _.filter($scope.models.venues, function (v) {return !!v.score});
 
           var maxScore = _.maxBy(venuesWithScores, function(v) {return v.score}).score;
+          var minScore = _.minBy(venuesWithScores, function(v) {return v.score}).score;
 
           _.forEach($scope.models.regions, function (region) {
             var allVenues = _.filter($scope.models.venues, {venue_region: region.id});
@@ -48,7 +49,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
             var topVenues = _.slice(allVenues, 0, 50);
 
             _.forEach(topVenues, function (venue) {
-              venue.normalizedHeatScore =  !!venue.score ? (venue.score / maxScore) : null;
+              venue.normalizedHeatScore =  !!venue.score ? ( (venue.score - minScore) / (maxScore - minScore) ) : null;
             });
 
             region.venues = topVenues;

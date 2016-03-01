@@ -47,6 +47,20 @@ angular.module('hype_client').directive('venueRegion', function venueRegion() {
         }
       };
 
+      $scope.calcHeatMapColor = function calcHeatMapColor(venue) {
+
+        var aR = 0, aG = 0, aB = 255,
+            bR = 255, bG = 0, bB = 0;
+
+        var red   = _.floor((bR - aR) * venue.normalizedHeatScore + aR);      // Evaluated as -255*value + 255.
+        var green = _.floor((bG - aG) * venue.normalizedHeatScore + aG);      // Evaluates as 0.
+        var blue  = _.floor((bB - aB) * venue.normalizedHeatScore + aB);
+
+        var heatColor = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+
+        return !!venue.normalizedHeatScore ? {background: heatColor} : null;
+      };
+
       $scope.closeVenueModal = function () {
         $scope.modal.hide();
       };

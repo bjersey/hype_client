@@ -7,7 +7,12 @@
 
 <table style="width: 101%; height: 101%; table-layout: fixed; white-space: nowrap;">
   <tr ng-repeat="row in allRows">
-    <td ng-repeat="venue in row" ng-click="openVenueModal(venue.id)" class="venue-inactive" ng-class="{'venue-active': region.isOpen}" style="color: white; text-overflow: ellipsis; overflow: hidden; border: 2px solid black">
+    <td ng-repeat="venue in row"
+        ng-click="openVenueModal(venue.id)"
+        class="venue-inactive"
+        ng-style="calcHeatMapColor(venue)"
+        ng-class="{'venue-active': region.isOpen}"
+        style="color: white; text-overflow: ellipsis; overflow: hidden; border: 2px solid black">
       {{ venue.name }}
       <!--hi-->
     </td>
