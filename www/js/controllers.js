@@ -67,8 +67,8 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
     $scope.calcRegionPosition = function calcRegionPosition(idx) {
 
-      var foo = (idx % 3) * 30.2;
-      var bar = _.floor(idx / 3) * 45;
+      var foo = (idx % 3) * 33.3333;
+      var bar = _.floor(idx / 3) * 50;
 
       var top = bar + '%';
       var left = foo + '%';
