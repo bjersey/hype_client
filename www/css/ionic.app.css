@@ -9779,18 +9779,30 @@ a.button {
   background-color: #252839; }
 
 .login-button {
-  background-color: #252839;
-  margin-top: 125%; }
+  width: 65%; }
+
+.login-page {
+  font-family: Rockwell; }
 
 .hype-login-title {
-  position: absolute;
-  top: 40%;
-  left: 27%;
-  font-size: 5em;
+  font-size: 2.5em;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 35%; }
+
+.hype-sub-title {
+  color: #fff;
+  font-size: 2em; }
+
+.hype-live-title {
+  color: #C92228;
+  font-size: 2.5em; }
+
+.login-text {
   color: #fff; }
 
 .background {
-  background-color: #252839; }
+  background-color: black; }
 
 .venue-content {
   background-color: #b5b5b7; }
