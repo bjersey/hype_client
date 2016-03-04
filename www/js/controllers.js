@@ -137,7 +137,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
     };
 
   })
-  .controller('LoginController', function ($scope, $state, $http, $openFB) {
+  .controller('LoginController', function ($scope, $state, $http, $openFB, $ionicModal) {
     $scope.fbLogin = function () {
       $openFB.login({scope: 'email,public_profile,user_location,user_likes'}).then(
         function (response) {
@@ -154,6 +154,22 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
             alert('Facebook login failed');
           }
         });
+    };
+
+    $scope.goToLogin = function () {
+      $scope.modal.hide();
+    };
+
+
+    $ionicModal.fromTemplateUrl('templates/signup.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.modal = modal;
+    });
+
+    $scope.signup = function (venueId) {
+      $scope.modal.show();
     };
 
   })

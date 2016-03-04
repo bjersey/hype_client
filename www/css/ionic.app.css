@@ -9801,6 +9801,12 @@ a.button {
 .login-text {
   color: #fff; }
 
+.signup-page {
+  color: white;
+  font-family: Rockwell; }
+  .signup-page .form-box {
+    height: 38px; }
+
 .background {
   background-color: black; }
 

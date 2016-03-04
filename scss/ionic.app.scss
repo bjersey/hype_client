@@ -120,6 +120,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   color: #fff;
 }
 
+.signup-page {
+  color: white;
+  font-family: Rockwell;
+
+  .form-box {
+    height: 38px;
+  }
+}
+
 .background {
   background-color: black;
 }
