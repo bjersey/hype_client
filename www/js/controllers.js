@@ -13,6 +13,18 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
         $http.get("https://hype-server.herokuapp.com/venue/venueregion/all/").then(function (response) {
           $scope.models.regions = response.data;
 
+
+
+          var chinatown = $scope.models.regions.pop();
+          $scope.models.regions.unshift(chinatown);
+
+          var kStreet = _.remove($scope.models.regions, function (r) {
+            return r.name === 'K Street';
+          });
+
+          $scope.models.regions.push(kStreet[0]);
+
+
           $scope.models.regionGroup = [_.slice($scope.models.regions, 0, 6), _.slice($scope.models.regions, 6, 11),
                                        _.slice($scope.models.regions, 11, 16), _.slice($scope.models.regions, 16, 21)];
 
