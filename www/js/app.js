@@ -8,6 +8,8 @@ angular.module('hype_client', ['ionic', 'ngOpenFB', 'ngCordova'])
 .run(function($ionicPlatform, $openFB) {
   $ionicPlatform.ready(function() {
 
+    screen.lockOrientation('portrait');
+
     $openFB.init({appId: '309453912512212'});
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

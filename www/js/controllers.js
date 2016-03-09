@@ -1,9 +1,12 @@
 /**
  * Created by bjersey on 12/6/15.
  */
-angular.module('hype_client').controller('HeatMapController', function ($scope, $state, $http, $openFB) {
+angular.module('hype_client').controller('HeatMapController', function ($scope, $ionicPlatform, $state, $http, $openFB) {
 
-    //window.screen.lockOrientation('portrait');
+
+    $ionicPlatform.ready(function() {
+      screen.lockOrientation('landscape');
+    });
 
     $scope.models = {};
 
