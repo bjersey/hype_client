@@ -9733,22 +9733,29 @@ a.button {
 
 .heatmap-sidemenu {
   position: absolute;
-  top: 0;
+  top: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 0;
   width: 9.2%;
-  min-height: 105vh;
+  min-height: 110vh;
   background-color: black; }
   .heatmap-sidemenu .icon {
-    font-size: 3em;
+    font-size: 2.5em;
     color: #9E9E9E; }
 
 .heatmap-advertisement {
   position: absolute;
   bottom: 0;
   right: 0;
+  display: flex;
+  color: #9E9E9E;
+  justify-content: center;
+  align-items: center;
   height: 14.7%;
   width: 90.8%;
-  background-color: #cc2a40; }
+  background-color: black; }
 
 .heatmap-content {
   position: absolute;
