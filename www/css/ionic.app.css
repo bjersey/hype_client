@@ -9762,7 +9762,7 @@ a.button {
   align-items: center;
   left: 0;
   width: 9.2%;
-  min-height: 98vh;
+  min-height: 100vh;
   background-color: black; }
   .heatmap-sidemenu .icon {
     font-size: 2.5em;
