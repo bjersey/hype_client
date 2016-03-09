@@ -74,6 +74,14 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
           console.log('failed to retrieve info for dashboard');
         });
 
+        $http.get("https://hype-server.herokuapp.com/venue/ticker/").then(function (response) {
+
+          $scope.models.tickerText = response.data.text;
+
+        }, function (response) {
+          console.log('failed to retrieve info for dashboard');
+        });
+
       }, function (err) {
         console.log(err);
         console.log("first time?");
