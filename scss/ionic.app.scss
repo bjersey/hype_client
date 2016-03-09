@@ -21,16 +21,44 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+@keyframes ticker {
+  from {right: 1%;}
+  to {right: 88%;}
+}
+
+.heatmap-ticker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6vh;
+  color: #9E9E9E;
+  width: 100%;
+  background-color: black;
+  //animation-name: ticker;
+  //animation-duration: 4s;
+  //animation-iteration-count: infinite;
+  //animation-direction: alternate;
+}
+
+.heatmap-ticker-text {
+  position: absolute;
+  animation-name: ticker;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-out;
+}
+
 .heatmap-sidemenu {
   position: absolute;
   //top: 0;
-  top: -30px;
+  top: 23px;
   display: flex;
   justify-content: center;
   align-items: center;
   left: 0;
   width: 9.2%;
-  min-height: 110vh;
+  min-height: 98vh;
   background-color: black;
   //background-image: linear-gradient(180deg, #212539, #333439 50%, transparent 50%);
 
@@ -59,7 +87,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   position: absolute;
   left: 9.2%;
   bottom: 14.7%;
-  height: 85.3%;
+  height: 79.3%;
   //height: calc(105vh - 20px);
   //width: calc(100% - 33px);
   width: 90.8%;

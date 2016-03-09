@@ -9731,15 +9731,38 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+@keyframes ticker {
+  from {
+    right: 1%; }
+  to {
+    right: 88%; } }
+
+.heatmap-ticker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6vh;
+  color: #9E9E9E;
+  width: 100%;
+  background-color: black; }
+
+.heatmap-ticker-text {
+  position: absolute;
+  animation-name: ticker;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-out; }
+
 .heatmap-sidemenu {
   position: absolute;
-  top: -30px;
+  top: 23px;
   display: flex;
   justify-content: center;
   align-items: center;
   left: 0;
   width: 9.2%;
-  min-height: 110vh;
+  min-height: 98vh;
   background-color: black; }
   .heatmap-sidemenu .icon {
     font-size: 2.5em;
@@ -9761,7 +9784,7 @@ a.button {
   position: absolute;
   left: 9.2%;
   bottom: 14.7%;
-  height: 85.3%;
+  height: 79.3%;
   width: 90.8%;
   text-align: center;
   background-color: black; }
