@@ -4,9 +4,9 @@
 angular.module('hype_client').controller('HeatMapController', function ($scope, $ionicPlatform, $state, $http, $openFB) {
 
 
-    $ionicPlatform.ready(function() {
-      screen.lockOrientation('landscape');
-    });
+    //$ionicPlatform.ready(function() {
+    //  screen.lockOrientation('landscape');
+    //});
 
     $scope.models = {};
 

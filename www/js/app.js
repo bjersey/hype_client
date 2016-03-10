@@ -8,7 +8,7 @@ angular.module('hype_client', ['ionic', 'ngOpenFB', 'ngCordova'])
 .run(function($ionicPlatform, $openFB) {
   $ionicPlatform.ready(function() {
 
-    screen.lockOrientation('portrait');
+    //screen.lockOrientation('portrait');
 
     $openFB.init({appId: '309453912512212'});
 
