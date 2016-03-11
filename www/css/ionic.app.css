@@ -9768,6 +9768,20 @@ a.button {
     font-size: 2.5em;
     color: #9E9E9E; }
 
+.social-menu {
+  display: none;
+  position: absolute;
+  left: 9.5%;
+  top: 35%;
+  z-index: 500;
+  background-color: #333439; }
+  .social-menu .social-icon {
+    height: 35px;
+    width: 35px; }
+  .social-menu.active {
+    display: flex !important;
+    flex-direction: column; }
+
 .heatmap-advertisement {
   position: absolute;
   bottom: 0;

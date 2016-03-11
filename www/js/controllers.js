@@ -134,9 +134,21 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
       if (!$scope.disableRegionAnimation) {
         region.isOpen = !region.isOpen;
+        $scope.socialMenuActive = false;
         $scope.disableRegionAnimation = true;
       }
 
+    };
+
+    $scope.socialMenuActive = false;
+
+    $scope.toggleMenuActive = function () {
+      $scope.socialMenuActive = !$scope.socialMenuActive;
+    };
+
+    $scope.sortBySocialPlatform = function (platform) {
+      $scope.socialMenuActive = false;
+      console.log(platform);
     };
 
     $scope.goHeatMap = function () {

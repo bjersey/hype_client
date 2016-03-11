@@ -68,6 +68,26 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   }
 }
 
+.social-menu {
+  display: none;
+  position: absolute;
+  left: 9.5%;
+  top: 35%;
+  z-index: 500;
+  background-color: #333439;
+
+  .social-icon {
+    height: 35px;
+    width: 35px;
+  }
+
+  &.active {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+}
+
 .heatmap-advertisement {
   position: absolute;
   bottom: 0;

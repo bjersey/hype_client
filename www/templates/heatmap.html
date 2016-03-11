@@ -12,7 +12,7 @@
           <i class="icon ion-person" ng-click="goProfile()"></i>
         </div>
         <div>
-          <i class="icon ion-ios-drag"></i>
+          <i class="icon ion-navicon-round" ng-click="toggleMenuActive()"></i>
         </div>
         <div>
           <i class="icon ion-heart"></i>
@@ -24,6 +24,11 @@
           <i class="icon ion-ios-search"></i>
         </div>
       </div>
+    </div>
+    <div class="social-menu" ng-class="{active: socialMenuActive}">
+      <div ng-click="sortBySocialPlatform('facebook')"><img class="social-icon" src="img/facebook.png"></div>
+      <div ng-click="sortBySocialPlatform('instagram')"><img class="social-icon" src="img/instagram.png"></div>
+      <div ng-click="sortBySocialPlatform('twitter')"><img class="social-icon" src="img/twitter.png"></div>
     </div>
     <div class="heatmap-content">
       <div ng-repeat="region in models.activeRegionGroup"
