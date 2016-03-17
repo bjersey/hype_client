@@ -37,7 +37,7 @@
            ng-style="calcRegionPosition($index)"
            ng-click="toggleVenueRegion(region)" on-swipe-right="swipeRegionsRight()" on-swipe-left="swipeRegionsLeft()">
         <span class="region-name" ng-class="{'region-name-active-region': region.isOpen}">{{ region.name }}</span>
-        <div venue-region="region" style="width: 100%; height: 100%;"></div>
+        <div venue-region="region" start-color="startColor" end-color="endColor" style="width: 100%; height: 100%;"></div>
       </div>
     </div>
     <div class="heatmap-advertisement"><span>Advertisement here</span></div>

@@ -49,8 +49,8 @@ angular.module('hype_client').directive('venueRegion', function venueRegion() {
 
       $scope.calcHeatMapColor = function calcHeatMapColor(venue) {
 
-        var aR = 224, aG = 131, aB = 131,
-            bR = 239, bG = 2, bB = 2;
+        var aR = $scope.startColor[0], aG = $scope.startColor[1], aB = $scope.startColor[2],
+            bR = $scope.endColor[0], bG = $scope.endColor[1], bB = $scope.endColor[2];
 
         var red   = _.floor((bR - aR) * venue.normalizedHeatScore + aR);      // Evaluated as -255*value + 255.
         var green = _.floor((bG - aG) * venue.normalizedHeatScore + aG);      // Evaluates as 0.

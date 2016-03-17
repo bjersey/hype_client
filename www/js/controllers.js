@@ -47,27 +47,24 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
           $scope.models.venues = response.data;
 
-          var venuesWithScores = _.filter($scope.models.venues, function (v) {return !!v.score});
-
-          var maxScore = _.maxBy(venuesWithScores, function(v) {return v.score}).score;
-          var minScore = _.minBy(venuesWithScores, function(v) {return v.score}).score;
-
           _.forEach($scope.models.regions, function (region) {
-            var allVenues = _.filter($scope.models.venues, {venue_region: region.id});
 
-            allVenues = _.sortBy(allVenues, function (v) {
-              return !!v.score ? v.score : 0;
-            });
-
-            allVenues = _.reverse(allVenues);
-
-            var topVenues = _.slice(allVenues, 0, 50);
-
-            _.forEach(topVenues, function (venue) {
-              venue.normalizedHeatScore =  !!venue.score ? ( (venue.score - minScore) / (maxScore - minScore) ) : null;
-            });
-
-            region.venues = topVenues;
+            $scope.sortVenues(region, 'score');
+            //var allVenues = _.filter($scope.models.venues, {venue_region: region.id});
+            //
+            //allVenues = _.sortBy(allVenues, function (v) {
+            //  return !!v.score ? v.score : 0;
+            //});
+            //
+            //allVenues = _.reverse(allVenues);
+            //
+            //var topVenues = _.slice(allVenues, 0, 50);
+            //
+            //_.forEach(topVenues, function (venue) {
+            //  venue.normalizedHeatScore =  !!venue.score ? ( (venue.score - minScore) / (maxScore - minScore) ) : null;
+            //});
+            //
+            //region.venues = topVenues;
 
           });
 
@@ -93,6 +90,31 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
     };
     updateData();
+
+
+    $scope.sortVenues = function (region, metric) {
+      var venuesWithScores = _.filter($scope.models.venues, function (v) {return !!v[metric]});
+
+      var maxScore = _.maxBy(venuesWithScores, function(v) {return v[metric]})[metric];
+      var minScore = _.minBy(venuesWithScores, function(v) {return v[metric]})[metric];
+
+
+      var allVenues = _.filter($scope.models.venues, {venue_region: region.id});
+
+      allVenues = _.sortBy(allVenues, function (v) {
+        return !!v[metric] ? v[metric] : 0;
+      });
+
+      allVenues = _.reverse(allVenues);
+
+      var topVenues = _.slice(allVenues, 0, 50);
+
+      _.forEach(topVenues, function (venue) {
+        venue.normalizedHeatScore =  !!venue[metric] ? ( (venue[metric] - minScore) / (maxScore - minScore) ) : null;
+      });
+
+      region.venues = topVenues;
+    };
 
     $scope.swipeRegionsLeft = function swipeRegionsLeft() {
       if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber + 1]) && !$scope.disableRegionAnimation) {
@@ -146,9 +168,41 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
       $scope.socialMenuActive = !$scope.socialMenuActive;
     };
 
+
+    var aR = 224, aG = 131, aB = 131,
+            bR = 239, bG = 2, bB = 2;
+
+    $scope.startColor = [224, 131, 131];
+    $scope.endColor = [239, 2, 2];
+
     $scope.sortBySocialPlatform = function (platform) {
       $scope.socialMenuActive = false;
       console.log(platform);
+      var metric;
+
+      if (platform === 'facebook') {
+        metric = 'fb_likes';
+        $scope.startColor = [59, 89, 152];
+        $scope.endColor = [137, 155, 193];
+      } else if (platform === 'twitter') {
+        metric = 'followers_count';
+        $scope.startColor = [224, 131, 131];
+        $scope.endColor = [239, 2, 2];
+      } else if (platform === 'instagram') {
+        metric = 'score';
+        $scope.startColor = [224, 131, 131];
+        $scope.endColor = [239, 2, 2];
+      } else {
+        metric = 'score';
+        $scope.startColor = [224, 131, 131];
+        $scope.endColor = [239, 2, 2];
+      }
+
+      _.forEach($scope.models.regions, function (region) {
+
+        $scope.sortVenues(region, metric);
+
+      });
     };
 
     $scope.goHeatMap = function () {
