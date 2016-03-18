@@ -33,6 +33,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   height: 6vh;
   color: #9E9E9E;
   width: 100%;
+  z-index: 100;
   background-color: black;
   //animation-name: ticker;
   //animation-duration: 4s;
@@ -52,13 +53,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .heatmap-sidemenu {
   position: absolute;
   //top: 0;
-  top: 23px;
+  top: -30px;
   display: flex;
   justify-content: center;
   align-items: center;
   left: 0;
   width: 9.2%;
-  min-height: 100vh;
+  min-height: 110vh;
   background-color: black;
   //background-image: linear-gradient(180deg, #212539, #333439 50%, transparent 50%);
 
@@ -117,10 +118,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   .close-region {
     position: absolute;
     //background: black;
-    height: 49%;
+    height: 30%;
     width: 33%;
     z-index: 1;
-    transition: all .5s ease-in-out;
+    transition: all .2s ease-in-out;
     //display: inline-block;
     //width: 31.33%;
     //height: 21%;

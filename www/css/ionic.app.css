@@ -9744,6 +9744,7 @@ a.button {
   height: 6vh;
   color: #9E9E9E;
   width: 100%;
+  z-index: 100;
   background-color: black; }
 
 .heatmap-ticker-text {
@@ -9756,13 +9757,13 @@ a.button {
 
 .heatmap-sidemenu {
   position: absolute;
-  top: 23px;
+  top: -30px;
   display: flex;
   justify-content: center;
   align-items: center;
   left: 0;
   width: 9.2%;
-  min-height: 100vh;
+  min-height: 110vh;
   background-color: black; }
   .heatmap-sidemenu .icon {
     font-size: 2.5em;
@@ -9804,10 +9805,10 @@ a.button {
   background-color: black; }
   .heatmap-content .close-region {
     position: absolute;
-    height: 49%;
+    height: 30%;
     width: 33%;
     z-index: 1;
-    transition: all .5s ease-in-out;
+    transition: all .2s ease-in-out;
     font-size: .8em;
     border: .8px transparent; }
   .heatmap-content .open-region {
