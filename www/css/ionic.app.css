@@ -9805,7 +9805,7 @@ a.button {
   background-color: black; }
   .heatmap-content .close-region {
     position: absolute;
-    height: 30%;
+    height: 49%;
     width: 33%;
     z-index: 1;
     transition: all .2s ease-in-out;
@@ -9858,11 +9858,24 @@ a.button {
 .venue-content {
   background-color: #b5b5b7; }
 
+.venue-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start; }
+
 .venue-inactive {
   z-index: 0;
   font-size: 0px;
-  transition: all .5s ease-in-out;
-  background: #333439; }
+  transition: all .2s ease-in-out;
+  background: #333439;
+  width: 20%;
+  height: 14.28%;
+  flex: 0 1 auto; }
 
 .venue-active {
   z-index: 200;
