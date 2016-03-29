@@ -9821,7 +9821,7 @@ a.button {
     z-index: 100; }
 
 .venue-menu {
-  background-color: #252839; }
+  background-color: #24262D; }
 
 .login-button {
   width: 65%; }
@@ -9856,7 +9856,9 @@ a.button {
   background-color: black; }
 
 .venue-content {
-  background-color: #b5b5b7; }
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
 
 .venue-container {
   height: 100%;
@@ -9906,3 +9908,28 @@ a.button {
   width: 20%;
   font-size: .8em;
   border: .8px solid black; }
+
+.slide-in-left {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0); }
+
+.slide-in-left.ng-enter,
+.slide-in-left > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.slide-in-left.ng-enter-active,
+.slide-in-left > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slide-in-left.ng-leave,
+.slide-in-left > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms; }
+
+.modal-backdrop {
+  top: 5.8%;
+  left: 9%;
+  width: 91%;
+  height: 79%; }

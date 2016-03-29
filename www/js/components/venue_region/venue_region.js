@@ -37,7 +37,7 @@ angular.module('hype_client').directive('venueRegion', function venueRegion() {
 
       $ionicModal.fromTemplateUrl('templates/venue.html', {
         scope: $scope,
-        animation: 'slide-in-up'
+        animation: 'slide-in-left'
       }).then(function (modal) {
         $scope.modal = modal;
       });
@@ -46,6 +46,9 @@ angular.module('hype_client').directive('venueRegion', function venueRegion() {
         if (!!$scope.disableRegionAnimation) {
           $scope.activeVenue = _.find($scope.models.venues, {id: venueId});
           $scope.modal.show();
+
+
+
         }
       };
 

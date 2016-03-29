@@ -50,6 +50,11 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
           _.forEach($scope.models.regions, function (region) {
 
             $scope.sortVenues(region, 'score');
+
+            _.forEach(['fb_likes', 'followers_count', 'score'], function(metric) {
+              $scope.rankVenues(region, metric);
+            })
+
             //var allVenues = _.filter($scope.models.venues, {venue_region: region.id});
             //
             //allVenues = _.sortBy(allVenues, function (v) {
@@ -90,6 +95,21 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
     };
     updateData();
+
+    $scope.rankVenues = function rankVenues(region, metric) {
+      var allVenues = _.sortBy($scope.models.venues, function (v) {
+        return !!v[metric] ? v[metric] : 0;
+      });
+
+      allVenues = _.reverse(allVenues);
+
+      _.forEach(allVenues, function(venue) {
+        venue.ranking = _.merge(venue.ranking, {});
+        venue.ranking[metric] = _.merge(venue.ranking[metric], {});
+        venue.ranking[metric].rank = _.indexOf(allVenues, venue) + 1;
+      })
+    };
+
 
 
     $scope.sortVenues = function (region, metric) {

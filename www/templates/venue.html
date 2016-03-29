@@ -5,15 +5,27 @@
       <i class="icon ion-close-round" ng-click="closeVenueModal()" style="margin-top: 6px; color: white; font-weight: bold; font-size: x-large;"></i>
     </div>
   </ion-header-bar>
-  <ion-content class="venue-content">
-    <p style="margin-left: 5px">Hype Score: {{ activeVenue.score }}</p>
-    <p style="margin-left: 5px">Address: {{ activeVenue.address }}</p>
-    <p style="margin-left: 5px">Website: {{ activeVenue.website }}</p>
-    <p style="margin-left: 5px">Facebook Likes: {{ activeVenue.fb_likes }}</p>
-    <p style="margin-left: 5px">Facebook ID: {{ activeVenue.facebook_id }}</p>
-    <p style="margin-left: 5px">Facebook Checkins: {{ activeVenue.checkins }}</p>
-    <p style="margin-left: 5px">Twitter Followers: {{ activeVenue.followers_count }}</p>
+  <ion-content style="background-color: #87879A;">
+    <!--<p style="margin-left: 5px">Hype Score: {{ activeVenue.score }}</p>-->
+    <!--<p style="margin-left: 5px">Address: {{ activeVenue.address }}</p>-->
+    <!--<p style="margin-left: 5px">Website: {{ activeVenue.website }}</p>-->
+    <!--<p style="margin-left: 5px">Facebook Likes: {{ activeVenue.fb_likes }}</p>-->
+    <!--<p style="margin-left: 5px">Facebook ID: {{ activeVenue.facebook_id }}</p>-->
+    <!--<p style="margin-left: 5px">Facebook Checkins: {{ activeVenue.checkins }}</p>-->
+    <!--<p style="margin-left: 5px">Twitter Followers: {{ activeVenue.followers_count }}</p>-->
+    <div class="venue-content">
+      <div style="width: 100%; margin-left: 15px; margin-top: 20px;">
+        <p><span style="font-weight: bold; color: hsl(221, 92%, 47%)">FIT</span> Score = XX%</p>
+        <p>Ranked #{{ activeVenue.ranking.fb_likes.rank }} on Facebook by Likes</p>
+        <p>Ranked #{{ activeVenue.ranking.score.rank }} on Instagram by Hashtags</p>
+        <p>Ranked #{{ activeVenue.ranking.followers_count.rank }} on Twitter by Followers</p>
+      </div>
+      <div style="width: 100%; margin-left: 15px; margin-top: 20px;">
+        <p><span style="font-weight: bold; color: hsl(339, 88%, 48%)">LIVE</span> Score = XX%</p>
+        <p>Number of People = XXX</p>
+        <p>M/F Ratio = X:X</p>
+        <p>Age Range = X-X</p>
+      </div>
+    </div>
   </ion-content>
-  <ion-footer-bar align-title="left" class="venue-menu">
-  </ion-footer-bar>
 </ion-modal-view>
