@@ -9772,8 +9772,8 @@ a.button {
 .social-menu {
   display: none;
   position: absolute;
-  left: 9.5%;
-  top: 35%;
+  left: 9.1%;
+  top: 26%;
   z-index: 500;
   background-color: #333439; }
   .social-menu .social-icon {
@@ -9929,7 +9929,7 @@ a.button {
   transition: all ease-in-out 250ms; }
 
 .modal-backdrop {
-  top: 5.8%;
+  top: 5.4%;
   left: 9%;
   width: 91%;
   height: 79%; }
