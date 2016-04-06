@@ -1,12 +1,20 @@
 /**
  * Created by bjersey on 12/6/15.
  */
-angular.module('hype_client').controller('HeatMapController', function ($scope, $ionicPlatform, $state, $http, $openFB) {
+angular.module('hype_client').controller('HeatMapController', function ($scope, $timeout, $ionicPlatform, $state, $http, $openFB) {
 
 
-    //$ionicPlatform.ready(function() {
-    //  screen.lockOrientation('landscape');
-    //});
+    $ionicPlatform.ready(function() {
+      $timeout(function() {
+        screen.lockOrientation('landscape');
+      }, 50);
+      $timeout(function() {
+        screen.lockOrientation('portrait');
+      }, 50);
+      $timeout(function() {
+        screen.lockOrientation('landscapelock orie');
+      }, 50);
+    });
 
     $scope.models = {};
 
