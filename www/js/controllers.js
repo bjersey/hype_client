@@ -3,15 +3,14 @@
  */
 angular.module('hype_client').controller('HeatMapController', function ($scope, $timeout, $ionicPlatform, $state, $http, $openFB) {
 
-
-    $ionicPlatform.ready(function() {
-      $timeout(function() {
+    $ionicPlatform.ready(function () {
+      $timeout(function () {
         screen.lockOrientation('landscape');
       }, 50);
-      $timeout(function() {
+      $timeout(function () {
         screen.lockOrientation('portrait');
       }, 50);
-      $timeout(function() {
+      $timeout(function () {
         screen.lockOrientation('landscapelock orie');
       }, 50);
     });
@@ -24,8 +23,6 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
         $http.get("https://hype-server.herokuapp.com/venue/venueregion/all/").then(function (response) {
           $scope.models.regions = response.data;
 
-
-
           var chinatown = $scope.models.regions.pop();
           $scope.models.regions.unshift(chinatown);
 
@@ -34,7 +31,6 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
           });
 
           $scope.models.regions.push(kStreet[0]);
-
 
           $scope.models.regionGroup = [_.slice($scope.models.regions, 0, 6), _.slice($scope.models.regions, 6, 11),
                                        _.slice($scope.models.regions, 11, 16), _.slice($scope.models.regions, 16, 21)];
@@ -59,7 +55,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
             $scope.sortVenues(region, 'score');
 
-            _.forEach(['fb_likes', 'followers_count', 'score'], function(metric) {
+            _.forEach(['fb_likes', 'followers_count', 'score'], function (metric) {
               $scope.rankVenues(region, metric);
             })
 
@@ -80,8 +76,6 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
             //region.venues = topVenues;
 
           });
-
-
 
         }, function (response) {
           console.log('failed to retrieve info for dashboard');
@@ -106,28 +100,31 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
     $scope.rankVenues = function rankVenues(region, metric) {
       var allVenues = _.sortBy($scope.models.venues, function (v) {
-        return !!v[metric] ? v[metric] : 0;
+        return !!v[metric]
+          ? v[metric]
+          : 0;
       });
 
       allVenues = _.reverse(allVenues);
 
-      _.forEach(allVenues, function(venue) {
+      _.forEach(allVenues, function (venue) {
         venue.ranking = _.merge(venue.ranking, {});
         venue.ranking[metric] = _.merge(venue.ranking[metric], {});
         venue.ranking[metric].rank = _.indexOf(allVenues, venue) + 1;
       })
     };
 
-
-
     $scope.sortVenues = function (region, metric) {
-      var venuesWithScores = _.filter($scope.models.venues, function (v) {return !!v[metric]});
-
+      var venuesWithScores = _.filter($scope.models.venues, function (v) {
+        return !!v[metric]
+      });
 
       var allVenues = _.filter($scope.models.venues, {venue_region: region.id});
 
       allVenues = _.sortBy(allVenues, function (v) {
-        return !!v[metric] ? v[metric] : 0;
+        return !!v[metric]
+          ? v[metric]
+          : 0;
       });
 
       allVenues = _.reverse(allVenues);
@@ -142,17 +139,20 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
 
       var maxScore = venuesWithScoresSorted[6][metric];
 
-
       //var maxScore = _.maxBy(venuesWithScores, function(v) {return v[metric]})[metric];
       //var minScore = _.minBy(venuesWithScores, function(v) {return v[metric]})[metric];
 
       _.forEach(topVenues, function (venue) {
-        temp =  !!venue[metric] ? ( (venue[metric] - minScore) / (maxScore - minScore) ) : null;
+        temp = !!venue[metric]
+          ? ( (venue[metric] - minScore) / (maxScore - minScore) )
+          : null;
         if (temp > 1) {
           venue.normalizedHeatScore = 1;
-        } else if (temp < 0) {
+        }
+        else if (temp < 0) {
           venue.normalizedHeatScore = 0;
-        } else {
+        }
+        else {
           venue.normalizedHeatScore = temp;
         }
       });
@@ -212,16 +212,15 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
       $scope.socialMenuActive = !$scope.socialMenuActive;
     };
 
-
     var aR = 224, aG = 131, aB = 131,
-            bR = 239, bG = 2, bB = 2;
+      bR = 239, bG = 2, bB = 2;
 
     //$scope.startColor = [224, 131, 131];
     //$scope.endColor = [239, 2, 2];
 
-  $scope.endColor = [0, 60, 69.6]; //0 60 69.6
-        //$scope.endColor = [239, 2, 2]; //0 98.3 47.3
-        $scope.startColor = [0, 98.3, 47.3]; //0 98.3 47.3
+    $scope.endColor = [0, 60, 69.6]; //0 60 69.6
+    //$scope.endColor = [239, 2, 2]; //0 98.3 47.3
+    $scope.startColor = [0, 98.3, 47.3]; //0 98.3 47.3
 
     $scope.sortBySocialPlatform = function (platform) {
       $scope.socialMenuActive = false;
@@ -234,19 +233,22 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
         $scope.startColor = [221, 44.1, 41.4]; // 221, 44.1, 41.4
         $scope.endColor = [221, 31.1, 64.7];// 221, 31.1, 64.7
         //$scope.endColor = [137, 155, 193];// 221, 31.1, 64.7
-      } else if (platform === 'twitter') {
+      }
+      else if (platform === 'twitter') {
         metric = 'followers_count';
         //$scope.startColor = [224, 131, 131]; //0 60 69.6
         $scope.startColor = [0, 98.3, 47.3]; //0 60 69.6
         //$scope.endColor = [239, 2, 2]; // 0 98.3 47.3
         $scope.endColor = [0, 60, 69.6];
-      } else if (platform === 'instagram') {
+      }
+      else if (platform === 'instagram') {
         metric = 'score';
         //$scope.startColor = [224, 131, 131]; //0 60 69.6
         //$scope.endColor = [239, 2, 2];
         $scope.startColor = [0, 98.3, 47.3]; //0 60 69.6
         $scope.endColor = [0, 60, 69.6]; //0 98.3 47.3
-      } else {
+      }
+      else {
         metric = 'score';
         //$scope.startColor = [224, 131, 131]; //0 60 69.6
         $scope.startColor = [0, 60, 69.6]; //0 60 69.6
@@ -304,7 +306,6 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
     $scope.goToLogin = function () {
       $scope.modal.hide();
     };
-
 
     $ionicModal.fromTemplateUrl('templates/signup.html', {
       scope: $scope,
