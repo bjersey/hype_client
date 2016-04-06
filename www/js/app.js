@@ -21,7 +21,7 @@ angular.module('hype_client', ['ionic', 'ngOpenFB', 'ngCordova'])
       StatusBar.styleDefault();
     }
 
-    //$cordovaStatusbar.hide();
+    $cordovaStatusbar.hide();
   });
 })
   .config(function ($httpProvider) {
