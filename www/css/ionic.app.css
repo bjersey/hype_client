@@ -9806,6 +9806,7 @@ a.button {
   .heatmap-content .close-region {
     position: absolute;
     height: 49%;
+    overflow: hidden;
     width: 33%;
     z-index: 1;
     transition: all .2s ease-in-out;
@@ -9859,6 +9860,9 @@ a.button {
   display: flex;
   flex-direction: row;
   justify-content: center; }
+
+.in-range {
+  border: 2px solid gold; }
 
 .venue-container {
   height: 100%;

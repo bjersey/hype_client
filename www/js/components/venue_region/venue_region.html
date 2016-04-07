@@ -12,7 +12,7 @@
        ng-click="openVenueModal(venue.id)"
        class="venue-inactive"
        ng-style="calcHeatMapColor(venue)"
-       ng-class="{'venue-active': region.isOpen}"
+       ng-class="{'venue-active': region.isOpen, 'in-range': isInVenueRange(venue)}"
        style="color: white;">
     {{ venue.short_name }}
   </div>

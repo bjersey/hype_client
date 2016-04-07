@@ -123,6 +123,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     position: absolute;
     //background: black;
     height: 49%;
+    overflow: hidden;
     width: 33%;
     z-index: 1;
     transition: all .2s ease-in-out;
@@ -199,6 +200,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.in-range {
+  border: 2px solid gold;
 }
 
 .venue-container {

@@ -1,7 +1,31 @@
 /**
  * Created by bjersey on 12/6/15.
  */
-angular.module('hype_client').controller('HeatMapController', function ($scope, $timeout, $ionicPlatform, $state, $http, $openFB) {
+angular.module('hype_client').controller('HeatMapController', function ($rootScope, $scope, $timeout, $ionicPlatform, $state, $http, $openFB, $cordovaBeacon) {
+
+    $scope.beacons = {};
+
+    $rootScope.$on("$cordovaBeacon:didEnterRegion", function (event, pluginResult) {
+      var uniqueBeaconKey;
+
+      _.forEach(pluginResult.beacons, function (beacon){
+        uniqueBeaconKey = beacon.uuid + ":" + beacon.major + ":" + beacon.minor;
+        $scope.beacons[uniqueBeaconKey] = beacon;
+      });
+
+      $scope.$apply();
+    });
+
+    $rootScope.$on("$cordovaBeacon:didExitRegion", function (event, pluginResult) {
+      var uniqueBeaconKey;
+
+      _.forEach(pluginResult.beacons, function (beacon){
+        uniqueBeaconKey = beacon.uuid + ":" + beacon.major + ":" + beacon.minor;
+        delete $scope.beacons[uniqueBeaconKey];
+      });
+
+      $scope.$apply();
+    });
 
     $ionicPlatform.ready(function () {
       $timeout(function () {
@@ -13,7 +37,16 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
       $timeout(function () {
         screen.lockOrientation('landscapelock orie');
       }, 50);
+
+      //$cordovaBeacon.requestWhenInUseAuthorization();
+      //
+      //$cordovaBeacon.startMonitoringForRegion($cordovaBeacon.createBeaconRegion("canvas", "f7826da6-4fa2-4e98-8024-bc5b71e0893e", "24103", "33672"));
+
     });
+
+    $scope.isInVenueRange = function (venue) {
+      return venue.name === "Canvas" && !!$scope.beacons["f7826da6-4fa2-4e98-8024-bc5b71e0893e:24103:33672"]
+    };
 
     $scope.models = {};
 
@@ -106,6 +139,10 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
       });
 
       allVenues = _.reverse(allVenues);
+
+      allVenues = _.filter(allVenues, function(venue) {
+        return !_.isNull(venue[metric]);
+      });
 
       _.forEach(allVenues, function (venue) {
         venue.ranking = _.merge(venue.ranking, {});
@@ -264,7 +301,7 @@ angular.module('hype_client').controller('HeatMapController', function ($scope, 
     };
 
     $scope.goHeatMap = function () {
-      updateData();
+      //updateData();
 
       _.forEach($scope.models.regions, function (region) {
         region.isOpen = false;
