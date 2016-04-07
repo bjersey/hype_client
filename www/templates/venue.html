@@ -14,17 +14,20 @@
     <!--<p style="margin-left: 5px">Facebook Checkins: {{ activeVenue.checkins }}</p>-->
     <!--<p style="margin-left: 5px">Twitter Followers: {{ activeVenue.followers_count }}</p>-->
     <div class="venue-content">
-      <div style="width: 100%; margin-left: 15px; margin-top: 20px;">
+      <div style="width: 45%; margin-left: 15px; margin-top: 20px;">
         <p><span style="font-weight: bold; color: hsl(221, 92%, 47%)">FIT</span> Score = XX%</p>
         <p>Ranked #{{ activeVenue.ranking.fb_likes.rank }} on Facebook by Likes</p>
         <p>Ranked #{{ activeVenue.ranking.score.rank }} on Instagram by Hashtags</p>
         <p>Ranked #{{ activeVenue.ranking.followers_count.rank }} on Twitter by Followers</p>
       </div>
-      <div style="width: 100%; margin-left: 15px; margin-top: 20px;">
+      <div style="width: 45%; margin-left: 15px; margin-top: 20px;">
         <p><span style="font-weight: bold; color: hsl(339, 88%, 48%)">LIVE</span> Score = XX%</p>
         <p>Number of People = XXX</p>
         <p>M/F Ratio = X:X</p>
         <p>Age Range = X-X</p>
+      </div>
+      <div style="width: 45%; margin-left: 15px; margin-top: 20px;">
+        Friends here:
       </div>
     </div>
   </ion-content>
