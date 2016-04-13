@@ -35,7 +35,7 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
         screen.lockOrientation('portrait');
       }, 50);
       $timeout(function () {
-        screen.lockOrientation('landscapelock orie');
+        screen.lockOrientation('landscape');
       }, 50);
 
       //$cordovaBeacon.requestWhenInUseAuthorization();
