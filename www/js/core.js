@@ -21,5 +21,8 @@ angular.module('hype_client', ['ionic', 'ngOpenFB', 'ngCordova', 'ngCordovaBeaco
   })
   .config(function ($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    $httpProvider.defaults.withCredentials = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   });

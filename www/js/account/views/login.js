@@ -1,4 +1,5 @@
 angular.module('hype_client').controller('LoginController', function ($scope, $state, $http, $openFB, $ionicModal) {
+
   $scope.fbLogin = function () {
     $openFB.login({scope: 'email,public_profile,user_location,user_likes'}).then(
       function (response) {

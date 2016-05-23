@@ -35,9 +35,9 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
       screen.lockOrientation('landscape');
     }, 50);
 
-    //$cordovaBeacon.requestWhenInUseAuthorization();
-    //
-    //$cordovaBeacon.startMonitoringForRegion($cordovaBeacon.createBeaconRegion("canvas", "f7826da6-4fa2-4e98-8024-bc5b71e0893e", "24103", "33672"));
+    $cordovaBeacon.requestWhenInUseAuthorization();
+
+    $cordovaBeacon.startMonitoringForRegion($cordovaBeacon.createBeaconRegion("canvas", "f7826da6-4fa2-4e98-8024-bc5b71e0893e", "24103", "33672"));
 
   });
 
@@ -112,6 +112,7 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
       });
 
       $http.get("https://hype-server.herokuapp.com/venue/ticker/").then(function (response) {
+      // $http.get("http://localhost:8000/venue/ticker/").then(function (response) {
 
         $scope.models.tickerText = response.data.text;
 
