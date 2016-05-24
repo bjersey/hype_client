@@ -10,6 +10,8 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
       $scope.beacons[uniqueBeaconKey] = beacon;
     });
 
+    // $http.post("https://hype-server.herokuapp.com/beacon/uservisit/", {venue: 484}).then(function () {});
+
     $scope.$apply();
   });
 
@@ -20,6 +22,8 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
       uniqueBeaconKey = beacon.uuid + ":" + beacon.major + ":" + beacon.minor;
       delete $scope.beacons[uniqueBeaconKey];
     });
+
+    // $http.delete("https://hype-server.herokuapp.com/beacon/uservisit/", {data: {venue: 484}}).then(function () {});
 
     $scope.$apply();
   });
@@ -118,6 +122,10 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
 
       }, function (response) {
         console.log('failed to retrieve info for dashboard');
+      });
+
+      $http.get("https://hype-server.herokuapp.com/beacon/uservisit/").then(function (response) {
+
       });
 
     }, function (err) {
