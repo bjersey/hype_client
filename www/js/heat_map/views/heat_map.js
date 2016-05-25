@@ -1,32 +1,32 @@
-angular.module('hype_client').controller('HeatMapController', function ($rootScope, $scope, $timeout, $ionicPlatform, $state, $http, $openFB, $cordovaBeacon) {
+angular.module('hype_client').controller('HeatMapController', function ($rootScope, $scope, $timeout, $ionicPlatform, $state, $http, $openFB) {
 
   $scope.beacons = {};
 
-  $rootScope.$on("$cordovaBeacon:didEnterRegion", function (event, pluginResult) {
-    var uniqueBeaconKey;
-
-    _.forEach(pluginResult.beacons, function (beacon) {
-      uniqueBeaconKey = beacon.uuid + ":" + beacon.major + ":" + beacon.minor;
-      $scope.beacons[uniqueBeaconKey] = beacon;
-    });
-
-    // $http.post("https://hype-server.herokuapp.com/beacon/uservisit/", {venue: 484}).then(function () {});
-
-    $scope.$apply();
-  });
-
-  $rootScope.$on("$cordovaBeacon:didExitRegion", function (event, pluginResult) {
-    var uniqueBeaconKey;
-
-    _.forEach(pluginResult.beacons, function (beacon) {
-      uniqueBeaconKey = beacon.uuid + ":" + beacon.major + ":" + beacon.minor;
-      delete $scope.beacons[uniqueBeaconKey];
-    });
-
-    // $http.delete("https://hype-server.herokuapp.com/beacon/uservisit/", {data: {venue: 484}}).then(function () {});
-
-    $scope.$apply();
-  });
+  // $rootScope.$on("$cordovaBeacon:didEnterRegion", function (event, pluginResult) {
+  //   var uniqueBeaconKey;
+  //
+  //   _.forEach(pluginResult.beacons, function (beacon) {
+  //     uniqueBeaconKey = beacon.uuid + ":" + beacon.major + ":" + beacon.minor;
+  //     $scope.beacons[uniqueBeaconKey] = beacon;
+  //   });
+  //
+  //   // $http.post("https://hype-server.herokuapp.com/beacon/uservisit/", {venue: 484}).then(function () {});
+  //
+  //   $scope.$apply();
+  // });
+  //
+  // $rootScope.$on("$cordovaBeacon:didExitRegion", function (event, pluginResult) {
+  //   var uniqueBeaconKey;
+  //
+  //   _.forEach(pluginResult.beacons, function (beacon) {
+  //     uniqueBeaconKey = beacon.uuid + ":" + beacon.major + ":" + beacon.minor;
+  //     delete $scope.beacons[uniqueBeaconKey];
+  //   });
+  //
+  //   // $http.delete("https://hype-server.herokuapp.com/beacon/uservisit/", {data: {venue: 484}}).then(function () {});
+  //
+  //   $scope.$apply();
+  // });
 
   $ionicPlatform.ready(function () {
     $timeout(function () {
@@ -39,9 +39,75 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
       screen.lockOrientation('landscape');
     }, 50);
 
-    $cordovaBeacon.requestWhenInUseAuthorization();
+    var delegate = new cordova.plugins.locationManager.Delegate();
 
-    $cordovaBeacon.startMonitoringForRegion($cordovaBeacon.createBeaconRegion("canvas", "f7826da6-4fa2-4e98-8024-bc5b71e0893e", "24103", "33672"));
+    delegate.didStartMonitoringForRegion = function (result) {
+
+        // Log to Xcode
+        cordova.plugins.locationManager.appendToDeviceLog(">>> START " + JSON.stringify(result));
+
+    };
+
+    delegate.didEnterRegion = function (result) {
+
+        // Log to Xcode
+        cordova.plugins.locationManager.appendToDeviceLog(">>> ENTER " + JSON.stringify(result));
+
+        // // Start Ranging Beacon When it enters Inside Region
+        // cordova.plugins.locationManager.startRangingBeaconsInRegion({
+        //     uuid        : result.region.uuid,
+        //     identifier  : result.region.identifier,
+        //     minor       : result.region.minor,
+        //     major       : result.region.major
+        // })
+        // .fail(console.error)
+        // .done();
+
+    };
+
+    delegate.didExitRegion = function (result) {
+
+        // Log to Xcode
+        cordova.plugins.locationManager.appendToDeviceLog(">>> EXIT " + JSON.stringify(result));
+
+        // // Stop Ranging Beacon if Outside Region
+        // cordova.plugins.locationManager.stopRangingBeaconsInRegion({
+        //     identifier  : result.region.identifier,
+        //     uuid        : result.region.uuid,
+        //     major       : result.region.major,
+        //     minor       : result.region.minor
+        // })
+        // .fail(console.error)
+        // .done();
+
+    };
+
+    delegate.didDetermineStateForRegion = function (result) {
+
+        // Log to Xcode
+        cordova.plugins.locationManager.appendToDeviceLog(">>> DETERMINE " + JSON.stringify(result));
+
+    };
+
+    delegate.didRangeBeaconsInRegion = function (result) {
+
+        // Log to Xcode
+        cordova.plugins.locationManager.appendToDeviceLog(">>> RANGE " + JSON.stringify(result));
+
+    };
+
+        // Set Methods for Location Manager
+    cordova.plugins.locationManager.setDelegate(delegate);
+
+    // Ask/Check For Permission
+    cordova.plugins.locationManager.requestAlwaysAuthorization();
+
+    var beaconRegion = new cordova.plugins.locationManager.BeaconRegion("canvas", "f7826da6-4fa2-4e98-8024-bc5b71e0893e");
+    cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion);
+
+    // $cordovaBeacon.requestWhenInUseAuthorization();
+    //
+    // $cordovaBeacon.startMonitoringForRegion($cordovaBeacon.createBeaconRegion("canvas", "f7826da6-4fa2-4e98-8024-bc5b71e0893e", "24103", "33672"));
 
   });
 
