@@ -1,6 +1,6 @@
 {
   "name": "hype_client",
-  "app_id": "",
+  "app_id": "47129ae1",
   "gulpStartupTasks": [
     "sass",
     "watch"
