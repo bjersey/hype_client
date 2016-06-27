@@ -1,4 +1,10 @@
-angular.module('hype_client').controller('HeatMapController', function ($rootScope, $scope, $timeout, $ionicPlatform, $state, $http, $openFB) {
+angular.module('hype_client').controller('HeatMapController', function ($rootScope, 
+                                                                        $scope, 
+                                                                        $timeout, 
+                                                                        $ionicPlatform, 
+                                                                        $state, 
+                                                                        $http, 
+                                                                        $openFB) {
 
   $scope.beacons = {};
 
