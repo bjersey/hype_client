@@ -3,7 +3,9 @@ angular.module('hype_client', ['ionic', 'ngOpenFB', 'ngCordova', 'ngCordovaBeaco
   .run(function ($ionicPlatform, $openFB) {
     $ionicPlatform.ready(function () {
 
-      screen.lockOrientation('portrait');
+      try {
+        screen.lockOrientation('portrait');
+      } catch (e) {}
 
       $openFB.init({appId: '309453912512212'});
 
@@ -16,7 +18,10 @@ angular.module('hype_client', ['ionic', 'ngOpenFB', 'ngCordova', 'ngCordovaBeaco
         StatusBar.styleDefault();
       }
 
-      $cordovaStatusbar.hide();
+      try {
+        $cordovaStatusbar.hide();
+      } catch (e) {}
+
     });
   })
   .config(function ($httpProvider) {

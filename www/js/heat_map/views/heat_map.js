@@ -35,81 +35,91 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
   // });
 
   $ionicPlatform.ready(function () {
+
+
     $timeout(function () {
-      screen.lockOrientation('landscape');
+      try {screen.lockOrientation('landscape')} catch (e) {}
     }, 50);
     $timeout(function () {
-      screen.lockOrientation('portrait');
+      try {screen.lockOrientation('portrait')} catch (e) {}
     }, 50);
     $timeout(function () {
-      screen.lockOrientation('landscape');
+      try {screen.lockOrientation('landscape')} catch (e) {}
     }, 50);
 
-    var delegate = new cordova.plugins.locationManager.Delegate();
+    try {
+      var delegate = new cordova.plugins.locationManager.Delegate();
+    } catch (e) {}
 
-    delegate.didStartMonitoringForRegion = function (result) {
+    if (delegate) {
 
-        // Log to Xcode
-        cordova.plugins.locationManager.appendToDeviceLog(">>> START " + JSON.stringify(result));
+      delegate.didStartMonitoringForRegion = function (result) {
 
-    };
+          // Log to Xcode
+          cordova.plugins.locationManager.appendToDeviceLog(">>> START " + JSON.stringify(result));
 
-    delegate.didEnterRegion = function (result) {
+      };
 
-        // Log to Xcode
-        cordova.plugins.locationManager.appendToDeviceLog(">>> ENTER " + JSON.stringify(result));
+      delegate.didEnterRegion = function (result) {
 
-        // // Start Ranging Beacon When it enters Inside Region
-        // cordova.plugins.locationManager.startRangingBeaconsInRegion({
-        //     uuid        : result.region.uuid,
-        //     identifier  : result.region.identifier,
-        //     minor       : result.region.minor,
-        //     major       : result.region.major
-        // })
-        // .fail(console.error)
-        // .done();
+          // Log to Xcode
+          cordova.plugins.locationManager.appendToDeviceLog(">>> ENTER " + JSON.stringify(result));
 
-    };
+          // // Start Ranging Beacon When it enters Inside Region
+          // cordova.plugins.locationManager.startRangingBeaconsInRegion({
+          //     uuid        : result.region.uuid,
+          //     identifier  : result.region.identifier,
+          //     minor       : result.region.minor,
+          //     major       : result.region.major
+          // })
+          // .fail(console.error)
+          // .done();
 
-    delegate.didExitRegion = function (result) {
+      };
 
-        // Log to Xcode
-        cordova.plugins.locationManager.appendToDeviceLog(">>> EXIT " + JSON.stringify(result));
+      delegate.didExitRegion = function (result) {
 
-        // // Stop Ranging Beacon if Outside Region
-        // cordova.plugins.locationManager.stopRangingBeaconsInRegion({
-        //     identifier  : result.region.identifier,
-        //     uuid        : result.region.uuid,
-        //     major       : result.region.major,
-        //     minor       : result.region.minor
-        // })
-        // .fail(console.error)
-        // .done();
+          // Log to Xcode
+          cordova.plugins.locationManager.appendToDeviceLog(">>> EXIT " + JSON.stringify(result));
 
-    };
+          // // Stop Ranging Beacon if Outside Region
+          // cordova.plugins.locationManager.stopRangingBeaconsInRegion({
+          //     identifier  : result.region.identifier,
+          //     uuid        : result.region.uuid,
+          //     major       : result.region.major,
+          //     minor       : result.region.minor
+          // })
+          // .fail(console.error)
+          // .done();
 
-    delegate.didDetermineStateForRegion = function (result) {
+      };
 
-        // Log to Xcode
-        cordova.plugins.locationManager.appendToDeviceLog(">>> DETERMINE " + JSON.stringify(result));
+      delegate.didDetermineStateForRegion = function (result) {
 
-    };
+          // Log to Xcode
+          cordova.plugins.locationManager.appendToDeviceLog(">>> DETERMINE " + JSON.stringify(result));
 
-    delegate.didRangeBeaconsInRegion = function (result) {
+      };
 
-        // Log to Xcode
-        cordova.plugins.locationManager.appendToDeviceLog(">>> RANGE " + JSON.stringify(result));
+      delegate.didRangeBeaconsInRegion = function (result) {
 
-    };
+          // Log to Xcode
+          cordova.plugins.locationManager.appendToDeviceLog(">>> RANGE " + JSON.stringify(result));
 
-        // Set Methods for Location Manager
-    cordova.plugins.locationManager.setDelegate(delegate);
+      };
 
-    // Ask/Check For Permission
-    cordova.plugins.locationManager.requestAlwaysAuthorization();
+          // Set Methods for Location Manager
+      cordova.plugins.locationManager.setDelegate(delegate);
 
-    var beaconRegion = new cordova.plugins.locationManager.BeaconRegion("canvas", "f7826da6-4fa2-4e98-8024-bc5b71e0893e");
-    cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion);
+      // Ask/Check For Permission
+      cordova.plugins.locationManager.requestAlwaysAuthorization();
+
+      var beaconRegion = new cordova.plugins.locationManager.BeaconRegion("canvas", "f7826da6-4fa2-4e98-8024-bc5b71e0893e");
+      cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion);
+
+    }
+
+
 
     // $cordovaBeacon.requestWhenInUseAuthorization();
     //
