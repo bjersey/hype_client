@@ -34,10 +34,12 @@ angular.module('hype_client').directive('venueRegion', function venueRegion($tim
         if (!!$scope.disableRegionAnimation) {
           $scope.activeVenue = _.find($scope.models.venues, {id: venueId});
           $scope.modal.show();
-          var modalBackdrops = document.getElementsByClassName('modal-backdrop');
-          _.forEach(modalBackdrops, function (modalBackdrop) {
-            angular.element(modalBackdrop).toggleClass('venue-detail-modal');
-          });
+          $timeout(function () {
+            var modalBackdrops = document.getElementsByClassName('modal-backdrop');
+            _.forEach(modalBackdrops, function (modalBackdrop) {
+              angular.element(modalBackdrop).toggleClass('venue-detail-modal');
+            });
+          }, 50);
         }
       };
 
@@ -66,7 +68,7 @@ angular.module('hype_client').directive('venueRegion', function venueRegion($tim
           _.forEach(modalBackdrops, function (modalBackdrop) {
             angular.element(modalBackdrop).toggleClass('venue-detail-modal');
           });
-        }, 500)
+        }, 50)
       };
 
     }
