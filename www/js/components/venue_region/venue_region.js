@@ -37,7 +37,7 @@ angular.module('hype_client').directive('venueRegion', function venueRegion($tim
           $timeout(function () {
             var modalBackdrops = document.getElementsByClassName('modal-backdrop');
             _.forEach(modalBackdrops, function (modalBackdrop) {
-              angular.element(modalBackdrop).toggleClass('venue-detail-modal');
+              modalBackdrop.className += ' venue-detail-modal';
             });
           }, 50);
         }
@@ -66,7 +66,7 @@ angular.module('hype_client').directive('venueRegion', function venueRegion($tim
         $timeout(function () {
           var modalBackdrops = document.getElementsByClassName('venue-detail-modal');
           _.forEach(modalBackdrops, function (modalBackdrop) {
-            angular.element(modalBackdrop).toggleClass('venue-detail-modal');
+            modalBackdrop.className.replace('venue-detail-modal', '');
           });
         }, 50)
       };
