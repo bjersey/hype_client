@@ -159,23 +159,7 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
 
           _.forEach(['fb_likes', 'followers_count', 'score'], function (metric) {
             $scope.rankVenues(region, metric);
-          })
-
-          //var allVenues = _.filter($scope.models.venues, {venue_region: region.id});
-          //
-          //allVenues = _.sortBy(allVenues, function (v) {
-          //  return !!v.score ? v.score : 0;
-          //});
-          //
-          //allVenues = _.reverse(allVenues);
-          //
-          //var topVenues = _.slice(allVenues, 0, 50);
-          //
-          //_.forEach(topVenues, function (venue) {
-          //  venue.normalizedHeatScore =  !!venue.score ? ( (venue.score - minScore) / (maxScore - minScore) ) : null;
-          //});
-          //
-          //region.venues = topVenues;
+          });
 
         });
 
@@ -249,9 +233,6 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
     venuesWithScoresSorted = _.reverse(venuesWithScoresSorted);
 
     var maxScore = venuesWithScoresSorted[6][metric];
-
-    //var maxScore = _.maxBy(venuesWithScores, function(v) {return v[metric]})[metric];
-    //var minScore = _.minBy(venuesWithScores, function(v) {return v[metric]})[metric];
 
     _.forEach(topVenues, function (venue) {
       temp = !!venue[metric]
