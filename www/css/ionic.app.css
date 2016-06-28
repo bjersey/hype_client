@@ -10017,7 +10017,7 @@ a.button {
   -webkit-transition: all ease-in-out 250ms;
   transition: all ease-in-out 250ms; }
 
-.modal-backdrop {
+.venue-detail-modal {
   top: 5.4%;
   left: 9%;
   width: 91%;

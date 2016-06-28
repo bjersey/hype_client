@@ -1,4 +1,4 @@
-angular.module('hype_client').directive('venueRegion', function venueRegion() {
+angular.module('hype_client').directive('venueRegion', function venueRegion($timeout) {
   'use strict';
 
   return {
@@ -34,6 +34,10 @@ angular.module('hype_client').directive('venueRegion', function venueRegion() {
         if (!!$scope.disableRegionAnimation) {
           $scope.activeVenue = _.find($scope.models.venues, {id: venueId});
           $scope.modal.show();
+          var modalBackdrops = document.getElementsByClassName('modal-backdrop');
+          _.forEach(modalBackdrops, function (modalBackdrop) {
+            angular.element(modalBackdrop).toggleClass('venue-detail-modal');
+          });
         }
       };
 
@@ -57,6 +61,12 @@ angular.module('hype_client').directive('venueRegion', function venueRegion() {
 
       $scope.closeVenueModal = function () {
         $scope.modal.hide();
+        $timeout(function () {
+          var modalBackdrops = document.getElementsByClassName('venue-detail-modal');
+          _.forEach(modalBackdrops, function (modalBackdrop) {
+            angular.element(modalBackdrop).toggleClass('venue-detail-modal');
+          });
+        }, 500)
       };
 
     }
