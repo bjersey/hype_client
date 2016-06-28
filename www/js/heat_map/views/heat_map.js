@@ -139,25 +139,11 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
       $http.get("https://hype-server.herokuapp.com/venue/venueregion/all/").then(function (response) {
         $scope.models.regions = response.data;
 
-        var chinatown = $scope.models.regions.pop();
-        $scope.models.regions.unshift(chinatown);
-
-        var kStreet = _.remove($scope.models.regions, function (r) {
-          return r.name === 'K Street';
-        });
-
-        $scope.models.regions.push(kStreet[0]);
-
-        $scope.models.regionGroup = [_.slice($scope.models.regions, 0, 6), _.slice($scope.models.regions, 6, 11),
-                                     _.slice($scope.models.regions, 11, 16), _.slice($scope.models.regions, 16, 21)];
 
         _.forEach($scope.models.regions, function (region) {
           region.isOpen = false;
         });
 
-        $scope.models.activeRegionNumber = 0;
-
-        $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
 
       }, function (response) {
         console.log('failed to retrieve info for dashboard');
@@ -283,22 +269,6 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
     });
 
     region.venues = topVenues;
-  };
-
-  $scope.swipeRegionsLeft = function swipeRegionsLeft() {
-    if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber + 1]) && !$scope.disableRegionAnimation) {
-      $scope.models.activeRegionNumber = $scope.models.activeRegionNumber + 1;
-      $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
-    }
-    console.log('swiping left');
-  };
-
-  $scope.swipeRegionsRight = function swipeRegionsRight() {
-    if (!_.isEmpty($scope.models.regionGroup[$scope.models.activeRegionNumber - 1]) && !$scope.disableRegionAnimation) {
-      $scope.models.activeRegionNumber = $scope.models.activeRegionNumber - 1;
-      $scope.models.activeRegionGroup = $scope.models.regionGroup[$scope.models.activeRegionNumber];
-    }
-    console.log('swiping right');
   };
 
   $scope.calcRegionPosition = function calcRegionPosition(idx) {

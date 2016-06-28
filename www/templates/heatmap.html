@@ -31,7 +31,7 @@
       <div ng-click="sortBySocialPlatform('twitter')"><img class="social-icon" src="img/twitter.png"></div>
     </div>
     <div class="heatmap-content">
-      <div ng-repeat="region in models.activeRegionGroup"
+      <div ng-repeat="region in models.regions"
            class="close-region"
            ng-class="{'open-region': region.isOpen}"
            ng-style="calcRegionPosition($index)"
