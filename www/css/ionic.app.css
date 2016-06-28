@@ -10022,3 +10022,6 @@ a.button {
   left: 9%;
   width: 91%;
   height: 79%; }
+
+.modal-open {
+  pointer-events: auto; }

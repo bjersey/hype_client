@@ -10,6 +10,12 @@ angular.module('hype_client').directive('venueRegion', function venueRegion($tim
         $scope.bang = _.slice($scope.region.venues, 0, 35);
       });
 
+      $scope.$on('goingToHeatMapHome', function () {
+        if (!!$scope.modal) {
+          $scope.modal.hide();
+        }
+      });
+
       $scope.calcVenuePosition = function calcVenuePosition(idx) {
         var foo = (idx % 5) * 20;
         var bar = _.floor(idx / 5) * 20;

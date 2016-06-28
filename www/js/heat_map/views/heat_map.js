@@ -341,6 +341,8 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
 
   $scope.goHeatMap = function () {
     //updateData();
+    
+    $scope.$broadcast('goingToHeatMapHome');
 
     _.forEach($scope.models.regions, function (region) {
       region.isOpen = false;

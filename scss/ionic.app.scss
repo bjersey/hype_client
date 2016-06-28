@@ -293,3 +293,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   width: 91%;
   height: 79%;
 }
+
+.modal-open {
+  pointer-events: auto;
+}
