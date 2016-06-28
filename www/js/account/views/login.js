@@ -1,7 +1,18 @@
 angular.module('hype_client').controller('LoginController', function ($scope, $state, $http, $openFB, $ionicModal) {
 
   $scope.fbLogin = function () {
-    $openFB.login({scope: 'email,public_profile,user_location,user_likes'}).then(
+    $http.get("https://hype-server.herokuapp.com/core/login/fb/").then(function () {
+      $openFB.isLoggedIn().then(function (loginStatus) {
+        console.log('logged into facebook');
+        $state.go('heatMap');
+      }, function (error) {
+        $openFB.login({scope: 'email,public_profile,user_location,user_likes'}).then(function (response) {
+          console.log(response.status);
+          $state.go('heatMap');
+        })
+      })
+    }, function (error) {
+      $openFB.login({scope: 'email,public_profile,user_location,user_likes'}).then(
       function (response) {
         if (response.status === 'connected') {
           console.log('Facebook login succeeded');
@@ -16,6 +27,9 @@ angular.module('hype_client').controller('LoginController', function ($scope, $s
           alert('Facebook login failed');
         }
       });
+
+    });
+
   };
 
   $scope.goToLogin = function () {
