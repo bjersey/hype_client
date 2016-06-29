@@ -1,5 +1,20 @@
 angular.module('hype_client').controller('LoginController', function ($scope, $state, $http, $openFB, $ionicModal) {
 
+  $ionicPlatform.ready(function () {
+    $timeout(function () {
+      try {screen.lockOrientation('portrait')} catch (e) {}
+    }, 50);
+    $timeout(function () {
+      try {screen.lockOrientation('landscape')} catch (e) {}
+    }, 50);
+    $timeout(function () {
+      try {screen.lockOrientation('portrait')} catch (e) {}
+    }, 50);
+  });
+
+
+
+
   $scope.fbLogin = function () {
     $http.get("https://hype-server.herokuapp.com/core/login/fb/").then(function () {
       $openFB.isLoggedIn().then(function (loginStatus) {
