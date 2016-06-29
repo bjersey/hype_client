@@ -1,4 +1,4 @@
-angular.module('hype_client').controller('LoginController', function ($scope, $state, $http, $openFB, $ionicModal) {
+angular.module('hype_client').controller('LoginController', function ($scope, $state, $http, $openFB, $ionicPlatform, $ionicModal) {
 
   $ionicPlatform.ready(function () {
     $timeout(function () {
