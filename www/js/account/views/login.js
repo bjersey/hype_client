@@ -1,6 +1,5 @@
 angular.module('hype_client').controller('LoginController', function ($scope, $state, $http, $openFB, $timeout, $ionicPlatform, $ionicModal) {
 
-  $ionicPlatform.ready(function () {
     $timeout(function () {
       try {screen.lockOrientation('portrait')} catch (e) {}
     }, 50);
@@ -10,7 +9,6 @@ angular.module('hype_client').controller('LoginController', function ($scope, $s
     $timeout(function () {
       try {screen.lockOrientation('portrait')} catch (e) {}
     }, 50);
-  });
 
 
 
