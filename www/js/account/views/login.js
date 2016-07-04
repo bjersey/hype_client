@@ -1,15 +1,16 @@
 angular.module('hype_client').controller('LoginController', function ($scope, $state, $http, $openFB, $timeout, $ionicPlatform, $ionicModal) {
 
-    $timeout(function () {
-      try {screen.lockOrientation('portrait')} catch (e) {}
-    }, 50);
-    $timeout(function () {
-      try {screen.lockOrientation('landscape')} catch (e) {}
-    }, 50);
-    $timeout(function () {
-      try {screen.lockOrientation('portrait')} catch (e) {}
-    }, 50);
+    // $timeout(function () {
+    //   try {screen.lockOrientation('portrait')} catch (e) {}
+    // }, 50);
+    // $timeout(function () {
+    //   try {screen.lockOrientation('landscape')} catch (e) {}
+    // }, 50);
+    // $timeout(function () {
+    //   try {screen.lockOrientation('portrait')} catch (e) {}
+    // }, 50);
 
+  try {screen.lockOrientation('portrait')} catch (e) {}
 
 
 

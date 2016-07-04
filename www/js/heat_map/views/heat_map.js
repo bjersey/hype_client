@@ -34,15 +34,17 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
   //   $scope.$apply();
   // });
 
-  $timeout(function () {
-      try {screen.lockOrientation('landscape')} catch (e) {}
-    }, 50);
-    $timeout(function () {
-      try {screen.lockOrientation('portrait')} catch (e) {}
-    }, 50);
-    $timeout(function () {
-      try {screen.lockOrientation('landscape')} catch (e) {}
-    }, 50);
+  // $timeout(function () {
+  //     try {screen.lockOrientation('landscape')} catch (e) {}
+  //   }, 50);
+  //   $timeout(function () {
+  //     try {screen.lockOrientation('portrait')} catch (e) {}
+  //   }, 50);
+  //   $timeout(function () {
+  //     try {screen.lockOrientation('landscape')} catch (e) {}
+  //   }, 50);
+
+  try {screen.lockOrientation('landscape')} catch (e) {}
 
   $ionicPlatform.ready(function () {
 
