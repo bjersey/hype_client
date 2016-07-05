@@ -176,7 +176,11 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
         console.log('failed to retrieve info for dashboard');
       });
 
-      $http.get("https://hype-server.herokuapp.com/beacon/uservisit/").then(function (response) {
+      // $http.get("https://hype-server.herokuapp.com/beacon/uservisit/").then(function (response) {
+      //
+      // });
+
+      $http.get("https://hype-server.herokuapp.com/beacon/beacons/").then(function (response) {
 
       });
 
