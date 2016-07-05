@@ -34,7 +34,10 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
   //   $scope.$apply();
   // });
 
-  $timeout(function () {
+  $ionicPlatform.ready(function () {
+
+
+    $timeout(function () {
       try {screen.lockOrientation('landscape')} catch (e) {}
     }, 50);
     $timeout(function () {
@@ -43,11 +46,6 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
     $timeout(function () {
       try {screen.lockOrientation('landscape')} catch (e) {}
     }, 50);
-
-  $ionicPlatform.ready(function () {
-
-
-
 
     try {
       var delegate = new cordova.plugins.locationManager.Delegate();
