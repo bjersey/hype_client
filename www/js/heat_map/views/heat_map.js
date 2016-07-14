@@ -1,10 +1,11 @@
-angular.module('hype_client').controller('HeatMapController', function ($rootScope, 
-                                                                        $scope, 
-                                                                        $timeout, 
-                                                                        $ionicPlatform, 
-                                                                        $state, 
-                                                                        $http, 
-                                                                        $openFB) {
+angular.module('hype_client').controller('HeatMapController', function ($rootScope,
+                                                                        $scope,
+                                                                        $timeout,
+                                                                        $ionicPlatform,
+                                                                        $state,
+                                                                        $http,
+                                                                        $openFB,
+                                                                        beaconModel) {
 
   $scope.beacons = {};
 
@@ -181,7 +182,7 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
       // });
 
       $http.get("https://hype-server.herokuapp.com/beacon/beacons/").then(function (response) {
-
+        beaconModel.update(response.data);
       });
 
     }, function (err) {
@@ -345,7 +346,7 @@ angular.module('hype_client').controller('HeatMapController', function ($rootSco
 
   $scope.goHeatMap = function () {
     //updateData();
-    
+
     $scope.$broadcast('goingToHeatMapHome');
 
     _.forEach($scope.models.regions, function (region) {
